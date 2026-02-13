@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  # El servidor Web (Apache + PHP)
+  app:
+    image: mcr.microsoft.com/devcontainers/php:8
+    volumes:
+      - ..:/workspace:cached
+    network_mode: service:db # Para que PHP vea a la base de datos como 'localhost'
+
+  # La Base de Datos (MySQL/MariaDB)
+  db:
+    image: mariadb:latest
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_DATABASE: mi_clase
+
+  # El Panel Visual (phpMyAdmin)
+  phpmyadmin:
+    image: phpmyadmin:latest
+    restart: always
+    ports:
+      - 8081:80
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: root
