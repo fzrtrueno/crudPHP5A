@@ -1,0 +1,18 @@
+{
+  "name": "Entorno PHP para Clase",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspace",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "bmewburn.vscode-intelephense-client",
+        "xdebug.php-debug",
+        "mtxr.sqltools",
+        "mtxr.sqltools-driver-mysql"
+      ]
+    }
+  },
+  "forwardPorts": [8080, 8081, 3306],
+  "postCreateCommand": "echo 'Entorno listo. Apache y phpMyAdmin iniciando...'"
+}
